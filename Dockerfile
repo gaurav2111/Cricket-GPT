@@ -1,16 +1,12 @@
-# ---- Stage 1: Build ----
-FROM gradle:7.6.0-jdk17 AS builder
+# First stage: build
+FROM gradle:8.5-jdk17 AS builder
+COPY --chown=gradle:gradle . /app
+WORKDIR /app
+RUN gradle build --no-daemon
 
-WORKDIR /home/app
-
-COPY . .
-
-# Clean and build while refreshing dependencies
-RUN gradle bootJar --no-daemon --refresh-dependencies
-
-# ---- Stage 2: Run ----
-FROM eclipse-temurin:17-jdk
-
-COPY --from=builder /home/app/build/libs/*.jar app.jar
-
+# Second stage: run
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY --from=builder /app/build/libs/*.jar app.jar
+EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
