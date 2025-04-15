@@ -1,14 +1,10 @@
-# Use official OpenJDK image
-FROM openjdk:17-jdk-slim
+# Stage 1: Build the app
+FROM gradle:7.6.0-jdk17 AS builder
+COPY . /home/app
+WORKDIR /home/app
+RUN gradle bootJar
 
-# Set the working directory
-WORKDIR /app
-
-# Copy the jar file (adjust the name if yours is different)
-COPY build/libs/app.jar app.jar
-
-# Expose the port (adjust if you're using something else)
-EXPOSE 8080
-
-# Run the jar file
+# Stage 2: Run the app
+FROM eclipse-temurin:17-jdk
+COPY --from=builder /home/app/build/libs/*.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
