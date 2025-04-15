@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Cricket Stats Bot</title>
+    <style>
+        body {
+          margin: 0;
+          padding: 0;
+          font-family: 'Segoe UI', sans-serif;
+          background: #eef2f5;
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          min-height: 100vh;
+          padding-top: 50px;
+        }
+
+        .container {
+          background: #ffffff;
+          padding: 40px 30px;
+          border-radius: 12px;
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+          width: 90%;
+          max-width: 800px;
+        }
+
+        h1 {
+          text-align: center;
+          margin-bottom: 30px;
+          font-size: 28px;
+          color: #333;
+        }
+
+        .input-group {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+          flex: 1;
+          padding: 12px 16px;
+          font-size: 16px;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          outline: none;
+          transition: all 0.2s ease-in-out;
+        }
+
+        input[type="text"]:focus {
+          border-color: #007bff;
+          box-shadow: 0 0 4px rgba(0, 123, 255, 0.2);
+        }
+
+        button {
+          padding: 12px 20px;
+          margin-left: 10px;
+          background: #007bff;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          font-size: 16px;
+          cursor: pointer;
+          transition: background 0.3s ease;
+        }
+
+        button:hover {
+          background: #0056b3;
+        }
+
+        #resultBox {
+          margin-top: 30px;
+          display: none;
+        }
+
+        #resultBox h2 {
+          margin-bottom: 10px;
+          font-size: 20px;
+          color: #444;
+        }
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        th, td {
+          padding: 12px 16px;
+          text-align: left;
+          border-bottom: 1px solid #f0f0f0;
+        }
+
+        th {
+          background-color: #f7f9fb;
+          color: #555;
+        }
+
+        tr:hover {
+          background-color: #f1f7ff;
+        }
+
+        .error {
+          color: red;
+          font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+          .input-group {
+            flex-direction: column;
+          }
+
+          input[type="text"], button {
+            width: 100%;
+            margin: 5px 0;
+          }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Ask Cricket Stats Question</h1>
+    <div class="input-group">
+        <input type="text" id="questionInput" placeholder="e.g. Total runs scored by V Kohli">
+        <button onclick="askGemini()">Ask</button>
+    </div>
+
+    <div id="resultBox">
+        <h2>Result</h2>
+        <div id="tableContainer"></div>
+    </div>
+</div>
+
+<script>
+    async function askGemini() {
+      const prompt = document.getElementById('questionInput').value.trim();
+      const tableContainer = document.getElementById('tableContainer');
+      const resultBox = document.getElementById('resultBox');
+
+      if (!prompt) {
+        alert("Please enter a question.");
+        return;
+      }
+
+      tableContainer.innerHTML = "<p>Loading...</p>";
+      resultBox.style.display = 'block';
+
+      try {
+        const response = await fetch(`/ask?prompt=${encodeURIComponent(prompt)}`);
+        const data = await response.json();
+        const result = data.result;
+
+        if (!Array.isArray(result) || result.length === 0) {
+          tableContainer.innerHTML = "<p>No data found.</p>";
+          return;
+        }
+
+        const headers = Object.keys(result[0]);
+        let tableHtml = "<table><thead><tr>";
+        headers.forEach(h => tableHtml += `<th>${h}</th>`);
+        tableHtml += "</tr></thead><tbody>";
+
+        result.forEach(row => {
+          tableHtml += "<tr>";
+          headers.forEach(h => {
+            tableHtml += `<td>${row[h]}</td>`;
+          });
+          tableHtml += "</tr>";
+        });
+
+        tableHtml += "</tbody></table>";
+        tableContainer.innerHTML = tableHtml;
+      } catch (error) {
+        tableContainer.innerHTML = `<p class="error">Error: ${error.message}</p>`;
+      }
+    }
+</script>
+
+</body>
+</html>

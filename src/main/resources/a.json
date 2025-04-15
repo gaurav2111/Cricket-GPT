@@ -1,0 +1,175 @@
+{
+  "meta": {
+    "data_version": "1.0.0",
+    "created": "2011-05-06",
+    "revision": 2
+  },
+  "info": {
+    "balls_per_over": 6,
+    "city": "Bangalore",
+    "dates": [
+      "2008-04-18"
+    ],
+    "event": {
+      "match_number": 1,
+      "name": "Indian Premier League"
+    },
+    "gender": "male",
+    "match_type": "T20",
+    "officials": {
+      "match_referees": [
+        "J Srinath"
+      ],
+      "reserve_umpires": [
+        "VN Kulkarni"
+      ],
+      "tv_umpires": [
+        "AM Saheba"
+      ],
+      "umpires": [
+        "Asad Rauf",
+        "RE Koertzen"
+      ]
+    },
+    "outcome": {
+      "by": {
+        "runs": 140
+      },
+      "winner": "Kolkata Knight Riders"
+    },
+    "overs": 20,
+    "player_of_match": [
+      "BB McCullum"
+    ],
+    "players": {
+      "Kolkata Knight Riders": [
+        "SC Ganguly",
+        "BB McCullum",
+        "RT Ponting",
+        "DJ Hussey",
+        "Mohammad Hafeez",
+        "LR Shukla",
+        "WP Saha",
+        "AB Agarkar",
+        "AB Dinda",
+        "M Kartik",
+        "I Sharma"
+      ],
+      "Royal Challengers Bangalore": [
+        "R Dravid",
+        "W Jaffer",
+        "V Kohli",
+        "JH Kallis",
+        "CL White",
+        "MV Boucher",
+        "B Akhil",
+        "AA Noffke",
+        "P Kumar",
+        "Z Khan",
+        "SB Joshi"
+      ]
+    },
+    "season": "2007/08",
+    "team_type": "club",
+    "teams": [
+      "Royal Challengers Bangalore",
+      "Kolkata Knight Riders"
+    ],
+    "toss": {
+      "decision": "field",
+      "winner": "Royal Challengers Bangalore"
+    },
+    "venue": "M Chinnaswamy Stadium"
+  },
+  "innings": [
+    {
+      "team": "Kolkata Knight Riders",
+      "overs": [
+        {
+          "over": 0,
+          "deliveries": [
+            {
+              "batter": "SC Ganguly",
+              "bowler": "P Kumar",
+              "extras": {
+                "legbyes": 1
+              },
+              "non_striker": "BB McCullum",
+              "runs": {
+                "batter": 0,
+                "extras": 1,
+                "total": 1
+              }
+            },
+            {
+              "batter": "BB McCullum",
+              "bowler": "P Kumar",
+              "non_striker": "SC Ganguly",
+              "runs": {
+                "batter": 0,
+                "extras": 0,
+                "total": 0
+              }
+            },
+            {
+              "batter": "BB McCullum",
+              "bowler": "P Kumar",
+              "extras": {
+                "wides": 1
+              },
+              "non_striker": "SC Ganguly",
+              "runs": {
+                "batter": 0,
+                "extras": 1,
+                "total": 1
+              }
+            },
+            {
+              "batter": "BB McCullum",
+              "bowler": "P Kumar",
+              "non_striker": "SC Ganguly",
+              "runs": {
+                "batter": 0,
+                "extras": 0,
+                "total": 0
+              }
+            },
+            {
+              "batter": "BB McCullum",
+              "bowler": "P Kumar",
+              "non_striker": "SC Ganguly",
+              "runs": {
+                "batter": 0,
+                "extras": 0,
+                "total": 0
+              }
+            },
+            {
+              "batter": "BB McCullum",
+              "bowler": "P Kumar",
+              "non_striker": "SC Ganguly",
+              "runs": {
+                "batter": 0,
+                "extras": 0,
+                "total": 0
+              }
+            },
+            {
+              "batter": "BB McCullum",
+              "bowler": "P Kumar",
+              "extras": {
+                "legbyes": 1
+              },
+              "non_striker": "SC Ganguly",
+              "runs": {
+                "batter": 0,
+                "extras": 1,
+                "total": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
