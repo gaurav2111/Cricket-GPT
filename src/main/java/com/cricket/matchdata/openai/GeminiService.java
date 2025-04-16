@@ -62,7 +62,11 @@ public class GeminiService {
                 "5. Q: V Kohli vs J Bumrah stat?\n" +
                 "   A: Select sum(runs_batter) as runs, count(*) as balls where batter = 'V Kohli' and bowler = 'J Bumrah'.\n" +
                 "   or if they specifically mention who is batter and who is bowler.\n" +
-                "\n"
+                "\n"+
+                "6. C Gayle\n"+
+                "SELECT player_name,sum(runs_scored) total_runs,sum(balls_faced ) as balls_faced,count(*) as innings from defaultdb.player_match_stats pms where player_name = 'C Gayle';"
+                +"C gayle in 2024"+
+                "A: SELECT player_name,sum(runs_scored) total_runs,sum(balls_faced ) as balls_faced,count(*) as innings from defaultdb.player_match_stats pms where player_name = 'C Gayle' and year=2024;"
                 +userInput;
         Map<String, Object> requestBody = new HashMap<>();
         Map<String, Object> part = new HashMap<>();
